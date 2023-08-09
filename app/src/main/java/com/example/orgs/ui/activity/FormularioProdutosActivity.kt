@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.orgs.R
 import com.example.orgs.dao.ProdutosDao
 import com.example.orgs.model.Produto
@@ -43,6 +44,11 @@ class FormularioProdutosActivity : AppCompatActivity(R.layout.activity_formulari
             val dao = ProdutosDao()
             dao.adiciona(criaProduto)
             Log.i("formproduto", "oncreate:${dao.buscaTodos()}")
+
+            val save = "Produto Salvo"
+            val duration = Toast.LENGTH_SHORT
+            Toast.makeText(this,save,duration).show()
+            finish()
         }
 
     }
