@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.example.orgs.R
+import com.example.orgs.model.Produto
+import java.math.BigDecimal
 
 class FormularioProdutosActivity : AppCompatActivity(R.layout.activity_formulario_produtos) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,15 +18,26 @@ class FormularioProdutosActivity : AppCompatActivity(R.layout.activity_formulari
         btnSalvar.setOnClickListener {
             val campoNome = findViewById<EditText>(R.id.nome)
             val nome = campoNome.text.toString()
-            Log.i("formproduto", "oncreate:$nome")
+
 
             val campoDesc = findViewById<EditText>(R.id.descricao)
             val desc = campoDesc.text.toString()
-            Log.i("formproduto", "oncreate:$desc")
+
 
             val campoValor = findViewById<EditText>(R.id.valor)
-            val valor = campoValor.text.toString()
-            Log.i("formproduto", "oncreate:$valor")
+            val valorEmTexto = campoValor.text.toString()
+            val valor = if (valorEmTexto.isBlank()) {
+                BigDecimal.ZERO
+            } else {
+                BigDecimal(valorEmTexto)
+            }
+
+            val criaProduto = Produto(
+                nome=nome,
+                descricao = desc,
+                valor = valor
+            )
+            Log.i("formproduto", "oncreate:$criaProduto")
         }
 
     }
