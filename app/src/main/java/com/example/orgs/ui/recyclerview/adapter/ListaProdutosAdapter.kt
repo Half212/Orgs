@@ -10,9 +10,12 @@ import com.example.orgs.R
 import com.example.orgs.model.Produto
 
 class ListaProdutosAdapter(
-    private val produtos : List<Produto>,
+    produtos : List<Produto>,
     private val context: Context
 ) : RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
+
+    private val produtos = produtos.toMutableList()
+
         class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
             fun vincula (produto:Produto){
                 val nome = itemView.findViewById<TextView>(R.id.nome)
@@ -25,8 +28,8 @@ class ListaProdutosAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val  infalter = LayoutInflater.from(context)
-        val view = infalter.inflate(R.layout.produto_item,parent,false)
+        val  inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.produto_item,parent,false)
         return ViewHolder(view)
     }
 
@@ -37,6 +40,12 @@ class ListaProdutosAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produto = produtos[position]
         holder.vincula(produto)
+    }
+
+    fun atualiza(produtos: List<Produto>) {
+        this.produtos.clear()
+        this.produtos.addAll(produtos)
+        notifyDataSetChanged()
     }
 
 }
