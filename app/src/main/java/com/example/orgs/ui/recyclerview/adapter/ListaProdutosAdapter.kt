@@ -18,7 +18,7 @@ class ListaProdutosAdapter(
 
         class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
             fun vincula (produto:Produto){
-                val nome = itemView.findViewById<TextView>(R.id.activity_formulario_nome)
+                val nome = itemView.findViewById<TextView>(R.id.produto_item_nome)
                 nome.text = produto.nome
                 val descricao = itemView.findViewById<TextView>(R.id.produto_item_descricao)
                 descricao.text = produto.descricao
