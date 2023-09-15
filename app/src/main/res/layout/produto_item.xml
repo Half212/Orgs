@@ -58,23 +58,24 @@
             tools:text="R$ 19.99">
 
         </TextView>
-        
-        <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp"
-            android:id="@+id/guideline"/>
+
+        <!--        <androidx.constraintlayout.widget.Guideline-->
+        <!--            android:id="@+id/guideline"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layout_constraintGuide_percent="0.3" />-->
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/produto_item_nome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3"
             app:srcCompat="@drawable/saladafruta"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </androidx.constraintlayout.widget.ConstraintLayout>
