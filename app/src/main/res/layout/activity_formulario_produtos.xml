@@ -36,6 +36,7 @@
                 android:id="@+id/activity_formulario_produto_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="Nome" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -54,6 +55,7 @@
                 android:id="@+id/activity_formulario_produto_descricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="Descrição" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +74,8 @@
                 android:id="@+id/activity_formulario_produto_valor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Valor" />
+                android:hint="Valor"
+                android:inputType="numberDecimal"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
