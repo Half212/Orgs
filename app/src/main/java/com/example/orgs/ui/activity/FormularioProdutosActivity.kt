@@ -4,27 +4,42 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.Placeholder
+import coil.load
 import com.example.orgs.R
 import com.example.orgs.dao.ProdutosDao
 import com.example.orgs.model.Produto
 import java.math.BigDecimal
 import com.example.orgs.databinding.ActivityFormularioProdutosBinding
+import com.example.orgs.databinding.FormularioImagemBinding
+import com.example.orgs.extensions.tryLoadImage
 
 class FormularioProdutosActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityFormularioProdutosBinding.inflate(layoutInflater)
+    private val binding by lazy {
+        ActivityFormularioProdutosBinding.inflate(layoutInflater)
     }
+    private var url : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         confgBtnSalvar()
-        binding.activityFormularioProdutoImagem.setOnClickListener{
+        binding.activityFormularioProdutoImagem.setOnClickListener {
+            val bindingFormularioImagem = FormularioImagemBinding.inflate(layoutInflater)
+            bindingFormularioImagem.formularioImagemBotaoCarregar.setOnClickListener {
+                val url = bindingFormularioImagem.activityFormularioImagemUrl.text.toString()
+                bindingFormularioImagem.formularioImagemImageview.tryLoadImage(url)
+
+            }
+
             AlertDialog.Builder(this)
-                .setView(R.layout.formulario_imagem)
-                .setPositiveButton("Confirmar") {_,_ ->
-                 }
-                .setNegativeButton("Cancelar") {_,_ ->
+                .setView(bindingFormularioImagem.root)
+                .setPositiveButton("Confirmar") { _, _ ->
+                    url = bindingFormularioImagem.activityFormularioImagemUrl.text.toString()
+                    binding.activityFormularioProdutoImagem.tryLoadImage(url)
+                }
+                .setNegativeButton("Cancelar") { _, _ ->
                 }
                 .show()
         }
@@ -69,7 +84,8 @@ class FormularioProdutosActivity : AppCompatActivity() {
         return Produto(
             nome = nome,
             descricao = desc,
-            valor = valor
+            valor = valor,
+            imagem = url
         )
     }
 }
